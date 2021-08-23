@@ -1,0 +1,3 @@
+function onDonateClick() {
+    alert('dziekuję');
+}
