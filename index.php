@@ -11,7 +11,7 @@
 
 <html>
 	<head>
-		<title>Wikipedia Polskich miast</title>
+		<title>Miastopedia</title>
 		<meta charset="utf-8">
 		
 		<!-- My CSS styles file -->
@@ -34,66 +34,72 @@
 	</head>
 	
 	<body>
-	 	<!-- header -->
-		<?php
-			include('templates/header.php');
-		?>
+		<div>
+			<!-- header -->
+			<?php
+				include('templates/header.php');
+			?>
 
-		<!-- sidebar -->
-		<?php
-			include('templates/sidebar.php');
-		?>
+			<!-- sidebar -->
+			<?php
+				include('templates/sidebar.php');
+			?>
 
-		<!-- main -->
-		<main class="container" style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute; "> 
-			<div class="table-wrapper">
-				<div id="target-content">loading...</div>
-				<div>
-					<ul class="pagination">
-						<?php
-						if(!empty($pages_count)) {
-							for($i = 1; $i <= $pages_count; $i++) {
-									if($i == 1) { 
-						?>
-										<li class="pageitem active" id="<?php echo $i;?>"><a href="JavaScript:Void(0);" data-id="<?php echo $i;?>" class="page-link" ><?php echo $i;?></a></li>									
-						<?php 
-									}
-									else {
-						?>
-										<li class="pageitem" id="<?php echo $i;?>"><a href="JavaScript:Void(0);" class="page-link" data-id="<?php echo $i;?>"><?php echo $i;?></a></li>
-						<?php
+			<!-- main -->
+			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute; "> 
+				<div class="table-wrapper">
+					<div id="target-content">loading...</div>
+					<div>
+						<ul class="pagination">
+							<?php
+							if(!empty($pages_count)) {
+								for($i = 1; $i <= $pages_count; $i++) {
+										if($i == 1) {
+							?>
+											<li class="pageitem active" id="<?php echo $i;?>"><a href="JavaScript:Void(0);" data-id="<?php echo $i;?>" class="page-link" ><?php echo $i;?></a></li>									
+							<?php 
+										}
+										else {
+							?>
+											<li class="pageitem" id="<?php echo $i;?>"><a href="JavaScript:Void(0);" class="page-link" data-id="<?php echo $i;?>"><?php echo $i;?></a></li>
+							<?php
+										}
 									}
 								}
-							}
-						?>
+							?>
+							</ul>
 						</ul>
-					</ul>
+					</div>
 				</div>
-			</div>
-		</main>
+			</main>
 
-		<script>
-			$(document).ready(function() {
-			$("#target-content").load("pagination.php?page=1");
-			$(".page-link").click(function() {
-				var id = $(this).attr("data-id");
-				var select_id = $(this).parent().attr("id");
-				$.ajax({
-					url: "pagination.php",
-					type: "GET",
-					data: {
-						page : id
-					},
-					cache: false,
-					success: function(dataResult) {
-						$("#target-content").html(dataResult);
-						$(".pageitem").removeClass("active");
-						$("#" + select_id).addClass("active");
-					}
+			<script>
+				$(document).ready(function() {
+				$("#target-content").load("pagination.php?page=1");
+				$(".page-link").click(function() {
+					var id = $(this).attr("data-id");
+					var select_id = $(this).parent().attr("id");
+					$.ajax({
+						url: "pagination.php",
+						type: "GET",
+						data: {
+							page : id
+						},
+						cache: false,
+						success: function(dataResult) {
+							$("#target-content").html(dataResult);
+							$(".pageitem").removeClass("active");
+							$("#" + select_id).addClass("active");
+						}
+					});
 				});
 			});
-		});
-	</script>
+			</script>
+		</div>
 
+		<!-- footer -->
+		<?php
+			include('templates/footer.php');
+		?>
 	</body>
 </html>

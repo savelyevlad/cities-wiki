@@ -19,7 +19,7 @@
 <table class="table table-bordered table-striped">  
     <thead>
         <tr>  
-            <th>Name</th>
+            <th>Nazwa</th>
         </tr>
     </thead>  
     <tbody>  
@@ -27,7 +27,7 @@
             while ($row = mysqli_fetch_array($sql_result)) {  
         ?>  
         <tr>
-            <td><?php echo $row["name"]; ?></td>
+            <td><a href="citi-information.php"><?php echo $row["name"]; ?></a></td>
         </tr>
         <?php
             };
