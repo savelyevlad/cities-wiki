@@ -26,11 +26,6 @@
 		<!-- for some reason this doesn't work: -->
 		<script src="scripts/scripts.js"></script>
 		<!-- so i made this: -->
-		<script>
-			function onDonateClick() {
-				alert('dziekuję');
-			}
-		</script>
 	</head>
 	
 	<body>
@@ -52,8 +47,7 @@
 					<span style="font-size: 12;">
 						[<a href="city-information.php" id="edit">edytuj</a>,
 						 <a href="index.php" id="delete_page">usuń</a>]
-					</span> 
-					<button onclick="kek()">kek</button>
+					</span>
 				</h2>
 				<div id="content-to-work-with">
 					<?php
@@ -69,31 +63,52 @@
 
 		<!-- footer -->
 		<?php
-			include('templates/footer.php');
+			// include('templates/footer.php');
 		?>
 
 		<script>
-			function kek() {
-				alert('kek');
-			}
 			$("#delete_page").click(function(e) {
-				if (confirm("Are you sure?")) {
-					// <?php
-					// 	$miasto_name = $_GET["id"];
-					// 	$sql_request = "delete from miasto where name='$miasto_name'";
-					// 	$sql_result = mysqli_query($connection, $sql_request);
-					// ?>
-				} else {
-					e.preventDefault();
-					return false;
-				}
-				return x; 
+			 	if (confirm("Are you sure?")) {
+			 		<?php
+			 			$miasto_name = $_GET["id"];
+			 			$sql_request = "delete from miasto where name='$miasto_name'";
+			 			// $sql_result = mysqli_query($connection, $sql_request);
+			 		?>
+					return true;
+			 	} else {
+			 		e.preventDefault();
+			 		return false;
+			 	}
 			});
 			$("#edit").click(function(e) {
-				alert('kek');
-				// e.preventDefault();
-				// $("#content-to-work-with").html("<?php include 'edit-area.php'; ?>");
+				e.preventDefault();
+				$("#content-to-work-with").html('<?php include 'edit-area.php'; ?>');
 			});
+			function reloadPage() {
+				window.location.reload(false);
+			}
+			function saveDescription() {
+				$.ajax({
+					url: document.URL,
+					type: "POST",
+					data: { editedText: $("#edited-text").val() },
+					cache: false,
+					success: function() {
+						var descriptionToSave = $("#edited-text").val();
+						alert('<?php if(isset($_POST['editedText'])) {  
+										$editedText = $_POST['editedText'];
+										echo $editedText;
+									} else {
+										echo 'fail';
+									}
+ 								?>');
+						// window.location.reload(false);
+					},
+					error: function() {
+						alert('error');
+					}
+				});
+			}
 		</script>
 
 	</body>
