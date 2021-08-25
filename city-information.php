@@ -46,8 +46,24 @@
 			?>
 
 			<!-- main -->
-			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute; "> 
-				
+			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute; ">
+				<h2> 
+					Miasto <?php echo $_GET["id"] ?> 
+					<span style="font-size: 12;">
+						[<a href="city-information.php" id="edit">edytuj</a>,
+						 <a href="index.php" id="delete_page">usuń</a>]
+					</span> 
+					<button onclick="kek()">kek</button>
+				</h2>
+				<div id="content-to-work-with">
+					<?php
+						$miasto_name = $_GET["id"];
+						$sql_request = "select * from miasto where name='$miasto_name'";
+						$sql_result = mysqli_query($connection, $sql_request);
+						$row = mysqli_fetch_array($sql_result);
+						echo($row["description"]);
+					?>
+				<div>
 			</main>
 		</div>
 
@@ -55,6 +71,30 @@
 		<?php
 			include('templates/footer.php');
 		?>
+
+		<script>
+			function kek() {
+				alert('kek');
+			}
+			$("#delete_page").click(function(e) {
+				if (confirm("Are you sure?")) {
+					// <?php
+					// 	$miasto_name = $_GET["id"];
+					// 	$sql_request = "delete from miasto where name='$miasto_name'";
+					// 	$sql_result = mysqli_query($connection, $sql_request);
+					// ?>
+				} else {
+					e.preventDefault();
+					return false;
+				}
+				return x; 
+			});
+			$("#edit").click(function(e) {
+				alert('kek');
+				// e.preventDefault();
+				// $("#content-to-work-with").html("<?php include 'edit-area.php'; ?>");
+			});
+		</script>
 
 	</body>
 </html>

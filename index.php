@@ -1,7 +1,7 @@
 <?php
 	define("ABS_PATH", $_SERVER['DOCUMENT_ROOT']);
 	include(ABS_PATH . '/wiki/database/database.php');
-	$limit = 4;
+	$limit = 5;
 	$sql_request = "select count(id_miasto) from miasto";
 	$sql_result = mysqli_query($connection, $sql_request);
 	$row = mysqli_fetch_row($sql_result);
@@ -46,41 +46,43 @@
 			?>
 
 			<!-- main -->
-			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute; "> 
-				<div class="table-wrapper">
-					<div id="target-content">loading...</div>
-					<div>
-						<ul class="pagination">
-							<?php
-							if(!empty($pages_count)) {
-								for($i = 1; $i <= $pages_count; $i++) {
-										if($i == 1) {
-							?>
-											<li class="pageitem active" id="<?php echo $i;?>"><a href="JavaScript:Void(0);" data-id="<?php echo $i;?>" class="page-link" ><?php echo $i;?></a></li>									
-							<?php 
-										}
-										else {
-							?>
-											<li class="pageitem" id="<?php echo $i;?>"><a href="JavaScript:Void(0);" class="page-link" data-id="<?php echo $i;?>"><?php echo $i;?></a></li>
-							<?php
+			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute;">
+				<div id="main-content"> 
+					<div class="table-wrapper">
+						<div id="target-content">loading...</div>
+						<div>
+							<ul class="pagination">
+								<?php
+								if(!empty($pages_count)) {
+									for($i = 1; $i <= $pages_count; $i++) {
+											if($i == 1) {
+								?>
+												<li class="pageitem active" id="<?php echo $i;?>"><a href="JavaScript:Void(0);" data-id="<?php echo $i;?>" class="page-link" ><?php echo $i;?></a></li>									
+								<?php 
+											}
+											else {
+								?>
+												<li class="pageitem" id="<?php echo $i;?>"><a href="JavaScript:Void(0);" class="page-link" data-id="<?php echo $i;?>"><?php echo $i;?></a></li>
+								<?php
+											}
 										}
 									}
-								}
-							?>
+								?>
+								</ul>
 							</ul>
-						</ul>
+						</div>
 					</div>
 				</div>
 			</main>
 
 			<script>
 				$(document).ready(function() {
-				$("#target-content").load("pagination.php?page=1");
+				$("#target-content").load("pagination-cities.php?page=1");
 				$(".page-link").click(function() {
 					var id = $(this).attr("data-id");
 					var select_id = $(this).parent().attr("id");
 					$.ajax({
-						url: "pagination.php",
+						url: "pagination-cities.php",
 						type: "GET",
 						data: {
 							page : id

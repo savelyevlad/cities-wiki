@@ -27,10 +27,10 @@
             while ($row = mysqli_fetch_array($sql_result)) {  
         ?>  
         <tr>
-            <td><a href="citi-information.php"><?php echo $row["name"]; ?></a></td>
+            <td><a href="city-information.php?id=<?php echo $row["name"]?>" id="<?php echo $row["name"]?>" class="page-city"><?php echo $row["name"]; ?></a></td>
         </tr>
         <?php
             };
         ?>
-    </tbody>  
+    </tbody>
 </table>

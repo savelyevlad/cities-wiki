@@ -10,5 +10,9 @@
     vertical-align: middle;
 
     height: 100px;
+}
 
-}  
+.main-link {
+    color: rgb(112, 112, 113); 
+    text-decoration: none;
+}
