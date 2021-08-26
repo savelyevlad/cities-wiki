@@ -19,7 +19,7 @@
 <table class="table table-bordered table-striped">  
     <thead>
         <tr>  
-            <th>Lista wojewódstw</th>
+            <th>Lista województw</th>
         </tr>
     </thead>  
     <tbody>  

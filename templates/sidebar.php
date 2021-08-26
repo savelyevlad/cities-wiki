@@ -7,8 +7,8 @@
 					<div class="collapse" id="home-collapse">
 						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 							<li><a href="./" class="link-dark rounded">Strona główna</a></li>
-							<li><a href="#" class="link-dark rounded">Dodaj miasto</a></li>
-							<li><a href="./lista-wojewodstw.php" class="link-dark rounded">Zobać listę wojewódstw</a></li>
+							<li><a href="./add-city.php" class="link-dark rounded">Dodaj miasto (+)</a></li>
+							<li><a href="./lista-wojewodstw.php" class="link-dark rounded">Zobać listę województw</a></li>
 							<li><a href="./lista-rzek.php" class="link-dark rounded">Zobać listę rzek</a></li>
 						</ul>
 					</div>
@@ -20,8 +20,8 @@
 					</button>
 					<div class="collapse" id="dashboard-collapse">
 						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-							<li><a href="#" class="link-dark rounded">Github</a></li>
-							<li><a href="#" class="link-dark rounded">Facebook</a></li>
+							<li><a href="https://github.com/savelyevlad" class="link-dark rounded">Github</a></li>
+							<li><a href="https://www.facebook.com/idsavelyev/" class="link-dark rounded">Facebook</a></li>
 						</ul>
 					</div>
 				</li>

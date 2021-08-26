@@ -82,7 +82,7 @@
 				</h2>
 				<div id="content-to-work-with">
 					<h6>
-						To miasto znajduje się w wojewódstwie: 
+						To miasto znajduje się w województwie: 
 						<?php
 							$miasto_name = $_GET["id"];
 							$sql_request = "select wojewodstwo.name, miasto.id_rzeka
