@@ -1,12 +1,6 @@
 <?php
 	define("ABS_PATH", $_SERVER['DOCUMENT_ROOT']);
 	include(ABS_PATH . '/wiki/database/database.php');
-	$limit = 4;
-	$sql_request = "select count(id_miasto) from miasto";
-	$sql_result = mysqli_query($connection, $sql_request);
-	$row = mysqli_fetch_row($sql_result);
-	$records_count = $row[0];
-	$pages_count = ceil($records_count / $limit);
 ?>
 
 <html>

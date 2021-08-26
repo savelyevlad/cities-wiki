@@ -12,14 +12,14 @@
     }
 
     $start_from = ($page - 1)*$limit;
-    $sql_request = "select * from miasto order by name asc limit $start_from, $limit";
+    $sql_request = "select * from wojewodstwo order by name asc limit $start_from, $limit";
     $sql_result = mysqli_query($connection, $sql_request);
 ?>
 
 <table class="table table-bordered table-striped">  
     <thead>
         <tr>  
-            <th>Lista miast</th>
+            <th>Lista wojewódstw</th>
         </tr>
     </thead>  
     <tbody>  
@@ -27,7 +27,7 @@
             while ($row = mysqli_fetch_array($sql_result)) {  
         ?>  
         <tr>
-            <td><a href="city-information.php?id=<?php echo $row["name"]?>" id="<?php echo $row["name"]?>" class="page-city"><?php echo $row["name"]; ?></a></td>
+            <td><a href="wojewodstwo-information.php?id=<?php echo $row["name"]?>" id="<?php echo $row["name"]?>" class="page-city"><?php echo $row["name"]; ?></a></td>
         </tr>
         <?php
             };

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-light bg-light">
 	<span class="navbar-text" style="margin-left: 2%;">
 		<h1 style="float:left;">
-			<a href="index.php" class="main-link">
+			<a href="./" class="main-link">
 				Miastopedia
 			</a>
 		</h1>
@@ -12,3 +12,9 @@
 		</button>
 	</div>
 </nav>
+
+<script>
+	function onDonateClick() {
+		alert('dziekuję');
+	}
+</script>
