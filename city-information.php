@@ -81,6 +81,27 @@
 					</span>
 				</h2>
 				<div id="content-to-work-with">
+					<h6>
+						To miasto znajduje się w wojewódstwie: 
+						<?php
+							$miasto_name = $_GET["id"];
+							$sql_request = "select wojewodstwo.name, miasto.id_rzeka
+												from miasto inner join wojewodstwo 
+												on miasto.id_wojewodstwo=wojewodstwo.id_wojewodstwo
+												where miasto.name='$miasto_name';";
+							$sql_result = mysqli_query($connection, $sql_request);
+							$row = mysqli_fetch_array($sql_result);
+							echo '<a href="wojewodstwo-information.php?id='.$row[0].'">' . $row[0] . '</a>';
+							echo "<br>";
+							if(isset($row[1])) {
+								$sql_request = "select name from rzeka where id_rzeka='$row[1]'";
+								$sql_result = mysqli_query($connection, $sql_request);
+								$row = mysqli_fetch_array($sql_result);
+								echo 'Nad rzeką: ';
+								echo '<a href="rzeka-information.php?id='.$row[0].'">' . $row[0] . '</a>';
+							}
+						?>
+					</h6>
 					<?php
 						$miasto_name = $_GET["id"];
 						$sql_request = "select * from miasto where name='$miasto_name'";
@@ -94,7 +115,7 @@
 
 		<!-- footer -->
 		<?php
-			// include('templates/footer.php');
+			include('templates/footer.php');
 		?>
 
 		<script>

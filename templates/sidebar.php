@@ -9,10 +9,11 @@
 							<li><a href="./" class="link-dark rounded">Strona główna</a></li>
 							<li><a href="#" class="link-dark rounded">Dodaj miasto</a></li>
 							<li><a href="./lista-wojewodstw.php" class="link-dark rounded">Zobać listę wojewódstw</a></li>
-							<li><a href="#" class="link-dark rounded">Zobać listę rzek</a></li>
+							<li><a href="./lista-rzek.php" class="link-dark rounded">Zobać listę rzek</a></li>
 						</ul>
 					</div>
 				</li>
+				<li class="border-top my-3"></li>
 				<li class="mb-1">
 					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
 						Kontakt
@@ -21,19 +22,6 @@
 						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 							<li><a href="#" class="link-dark rounded">Github</a></li>
 							<li><a href="#" class="link-dark rounded">Facebook</a></li>
-						</ul>
-					</div>
-				</li>
-				<li class="border-top my-3"></li>
-				<li class="mb-1">
-					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-					Orders
-					</button>
-					<div class="collapse" id="orders-collapse">
-						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-							<li><a href="#" class="link-dark rounded">Overview</a></li>
-							<li><a href="#" class="link-dark rounded">Updates</a></li>
-							<li><a href="#" class="link-dark rounded">Reports</a></li>
 						</ul>
 					</div>
 				</li>

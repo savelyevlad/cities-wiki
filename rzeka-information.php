@@ -2,18 +2,18 @@
 	define("ABS_PATH", $_SERVER['DOCUMENT_ROOT']);
 	include(ABS_PATH . '/wiki/database/database.php');
 	$limit = 4;
-	$sql_request = "select count(id_wojewodstwo) from wojewodstwo";
+	$sql_request = "select count(id_rzeka) from rzeka";
 	$sql_result = mysqli_query($connection, $sql_request);
 	$row = mysqli_fetch_row($sql_result);
 	$records_count = $row[0];
 	$pages_count = ceil($records_count / $limit);
 
 	if(isset($_POST['editedText'])) {
-		$wojewodstwo_name = $_GET["id"];
+		$rzeka_name = $_GET["id"];
 		$edited_text = $_POST["editedText"];
-		$sql_request =  "update wojewodstwo 
+		$sql_request =  "update rzeka 
 						set description='$edited_text'
-						where name='$wojewodstwo_name';";
+						where name='$rzeka_name';";
 		if($connection->query($sql_request)) {
 			echo 'updated';
 			// updated
@@ -26,8 +26,8 @@
 	}
 
 	if(isset($_POST['delete'])) {
-		$wojewodstwo_name = $_GET["id"];
-		$sql_request = "delete from wojewodstwo where name='$wojewodstwo_name'";
+		$rzeka_name = $_GET["id"];
+		$sql_request = "delete from rzeka where name='$rzeka_name'";
 		if($connection->query($sql_request)) {
 			echo 'updated';
 			// updated
@@ -75,14 +75,14 @@
 				<h2> 
 					Wojewódstwo <?php echo $_GET["id"] ?> 
 					<span style="font-size: 12;">
-						[<a href="city-information.php" id="edit">edytuj</a>]
+						[<a href="rzeka-information.php" id="edit">edytuj</a>]
 						 <!-- <a href="index.php" id="delete_page">usuń</a>] -->
 					</span>
 				</h2>
 				<div id="content-to-work-with">
 					<?php
-						$wojewodstwo_name = $_GET["id"];
-						$sql_request = "select * from wojewodstwo where name='$wojewodstwo_name'";
+						$rzeka_name = $_GET["id"];
+						$sql_request = "select * from rzeka where name='$rzeka_name'";
 						$sql_result = mysqli_query($connection, $sql_request);
 						$row = mysqli_fetch_array($sql_result);
 						echo($row["description"]);
@@ -109,7 +109,7 @@
 			});*/
 			$("#edit").click(function(e) {
 				e.preventDefault();
-				$("#content-to-work-with").html('<?php include 'edit-area-wojewodstwo.php'; ?>');
+				$("#content-to-work-with").html('<?php include 'edit-area-rzeka.php'; ?>');
 			});
 			function reloadPage() {
 				window.location.reload(false);
