@@ -15,6 +15,6 @@
 
     echo '</div>';
 
-    echo '<button type="button" class="btn btn-primary btn-sm" style="margin-top: 10px;" onclick="saveDescription()">Save</button>';
-    echo '<button type="button" class="btn btn-primary btn-sm" style="margin-top: 10px; margin-left: 10px;" onclick="reloadPage()">Cancel</button>';
+    echo '<button type="button" class="btn btn-primary btn-sm" style="margin-top: 10px;" onclick="saveDescription()">Zapisz</button>';
+    echo '<button type="button" class="btn btn-primary btn-sm" style="margin-top: 10px; margin-left: 10px;" onclick="reloadPage()">Anulować</button>';
 ?>

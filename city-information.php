@@ -7,6 +7,37 @@
 	$row = mysqli_fetch_row($sql_result);
 	$records_count = $row[0];
 	$pages_count = ceil($records_count / $limit);
+
+	if(isset($_POST['editedText'])) {
+		$miasto_name = $_GET["id"];
+		$edited_text = $_POST["editedText"];
+		$sql_request =  "update miasto 
+						set description='$edited_text'
+						where name='$miasto_name';";
+		if($connection->query($sql_request)) {
+			echo 'updated';
+			// updated
+		}
+		else {
+			echo 'not updated';
+			echo $sql_request;
+			// not updated
+		}
+	}
+
+	if(isset($_POST['delete'])) {
+		$miasto_name = $_GET["id"];
+		$sql_request = "delete from miasto where name='$miasto_name'";
+		if($connection->query($sql_request)) {
+			echo 'updated';
+			// updated
+		}
+		else {
+			echo 'not updated';
+			echo $sql_request;
+			// not updated
+		}
+	}
 ?>
 
 <html>
@@ -69,11 +100,7 @@
 		<script>
 			$("#delete_page").click(function(e) {
 			 	if (confirm("Are you sure?")) {
-			 		<?php
-			 			$miasto_name = $_GET["id"];
-			 			$sql_request = "delete from miasto where name='$miasto_name'";
-			 			// $sql_result = mysqli_query($connection, $sql_request);
-			 		?>
+					$.post(document.URL, {delete: 1}, function(returnedData) {});
 					return true;
 			 	} else {
 			 		e.preventDefault();
@@ -88,26 +115,12 @@
 				window.location.reload(false);
 			}
 			function saveDescription() {
-				$.ajax({
-					url: document.URL,
-					type: "POST",
-					data: { editedText: $("#edited-text").val() },
-					cache: false,
-					success: function() {
-						var descriptionToSave = $("#edited-text").val();
-						alert('<?php if(isset($_POST['editedText'])) {  
-										$editedText = $_POST['editedText'];
-										echo $editedText;
-									} else {
-										echo 'fail';
-									}
- 								?>');
-						// window.location.reload(false);
-					},
-					error: function() {
-						alert('error');
-					}
-				});
+				var editedText = $("#edited-text").val();
+				$.post(document.URL, {editedText: editedText}, function(returnedData) {});
+				// i made this timeout so sql can update db
+				setTimeout(function () {
+					location.reload()
+				}, 100);
 			}
 		</script>
 
