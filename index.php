@@ -13,9 +13,34 @@
 	<head>
 		<title>Miastopedia</title>
 		<meta charset="utf-8">
-		
-		<!-- My CSS styles file -->
-		<link rel="stylesheet" href="styles/style.css">
+		<style>
+			article {
+				min-height: 100%;
+				display: grid;
+				grid-template-rows: auto 1fr auto;
+				grid-template-columns: 100%;
+			}
+
+			footer {
+				background-color: rgb(238, 239, 230);
+    			color: rgb(112, 112, 113);
+				padding: 1rem;
+				text-align: center;
+    			vertical-align: middle;
+			}
+
+			.main-grid-container {
+				display: grid;
+				grid-template-columns: 160px auto;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+			
+            .main-link {
+                color: rgb(112, 112, 113); 
+                text-decoration: none;
+            }
+		</style>
 		<!-- Bootstrap CSS (jsDelivr CDN) -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<!-- Bootstrap Bundle JS (jsDelivr CDN) -->
@@ -23,24 +48,37 @@
 		<!-- ajax -->
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 		<!-- my scripts -->	
-		<!-- for some reason this doesn't work: -->
-		<script src="scripts/scripts.js"></script>
+		<script>
+				$(document).ready(function() {
+				$("#target-content").load("pagination-cities.php?page=1");
+				$(".page-link").click(function() {
+					var id = $(this).attr("data-id");
+					var select_id = $(this).parent().attr("id");
+					$.ajax({
+						url: "pagination-cities.php",
+						type: "GET",
+						data: {
+							page : id
+						},
+						cache: false,
+						success: function(dataResult) {
+							$("#target-content").html(dataResult);
+							$(".pageitem").removeClass("active");
+							$("#" + select_id).addClass("active");
+						}
+					});
+				});
+			});
+		</script>
 	</head>
 	
 	<body>
-		<div>
-			<!-- header -->
-			<?php
-				include('templates/header.php');
-			?>
-
-			<!-- sidebar -->
-			<?php
-				include('templates/sidebar.php');
-			?>
-
-			<!-- main -->
-			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute;">
+		<article>
+			<?php include 'templates/header.php' ?>
+			<main class="main-grid-container">
+				<!-- sidebar -->
+				<?php include 'templates/sidebar.php'; ?>
+				<!-- main -->
 				<div id="main-content"> 
 					<div class="table-wrapper">
 						<div id="target-content">loading...</div>
@@ -68,34 +106,7 @@
 					</div>
 				</div>
 			</main>
-
-			<script>
-				$(document).ready(function() {
-				$("#target-content").load("pagination-cities.php?page=1");
-				$(".page-link").click(function() {
-					var id = $(this).attr("data-id");
-					var select_id = $(this).parent().attr("id");
-					$.ajax({
-						url: "pagination-cities.php",
-						type: "GET",
-						data: {
-							page : id
-						},
-						cache: false,
-						success: function(dataResult) {
-							$("#target-content").html(dataResult);
-							$(".pageitem").removeClass("active");
-							$("#" + select_id).addClass("active");
-						}
-					});
-				});
-			});
-			</script>
-		</div>
-
-		<!-- footer -->
-		<?php
-			include('templates/footer.php');
-		?>
+			<?php include 'templates/footer.php' ?>
+		</article>
 	</body>
 </html>

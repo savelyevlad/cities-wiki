@@ -13,7 +13,34 @@
 	<head>
 		<title>Miastopedia</title>
 		<meta charset="utf-8">
-		
+		<style>
+			article {
+				min-height: 100%;
+				display: grid;
+				grid-template-rows: auto 1fr auto;
+				grid-template-columns: 100%;
+			}
+
+			footer {
+				background-color: rgb(238, 239, 230);
+    			color: rgb(112, 112, 113);
+				padding: 1rem;
+				text-align: center;
+    			vertical-align: middle;
+			}
+
+			.main-grid-container {
+				display: grid;
+				grid-template-columns: 160px auto;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+
+			.main-link {
+                color: rgb(112, 112, 113); 
+                text-decoration: none;
+            }
+		</style>
 		<!-- My CSS styles file -->
 		<link rel="stylesheet" href="styles/style.css">
 		<!-- Bootstrap CSS (jsDelivr CDN) -->
@@ -25,25 +52,40 @@
 		<!-- my scripts -->	
 		<!-- for some reason this doesn't work: -->
 		<script src="scripts/scripts.js"></script>
+		<script>
+				$(document).ready(function() {
+				$("#target-content").load("pagination-rzeka.php?page=1");
+				$(".page-link").click(function() {
+					var id = $(this).attr("data-id");
+					var select_id = $(this).parent().attr("id");
+					$.ajax({
+						url: "pagination-rzeka.php",
+						type: "GET",
+						data: {
+							page : id
+						},
+						cache: false,
+						success: function(dataResult) {
+							$("#target-content").html(dataResult);
+							$(".pageitem").removeClass("active");
+							$("#" + select_id).addClass("active");
+						}
+					});
+				});
+			});
+			</script>
 	</head>
 	
 	<body>
-		<div>
-			<!-- header -->
-			<?php
-				include('templates/header.php');
-			?>
-
-			<!-- sidebar -->
-			<?php
-				include('templates/sidebar.php');
-			?>
-
-			<!-- main -->
-			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute; "> 
-                <div id="main-content"> 
-                    <div class="table-wrapper">
-                            <div id="target-content">loading...</div>
+		<article>
+			<?php include 'templates/header.php' ?>
+			<main class="main-grid-container">
+				<!-- sidebar -->
+				<?php include 'templates/sidebar.php'; ?>
+				<!-- main -->
+				<div id="main-content"> 
+					<div class="table-wrapper">
+                        <div id="target-content">loading...</div>
                             <div>
                                 <ul class="pagination">
                                     <?php
@@ -67,36 +109,10 @@
 						    </div>
 					    </div>
 				    </div>
-                </div>
+				</div>
 			</main>
-            <script>
-				$(document).ready(function() {
-				$("#target-content").load("pagination-rzeka.php?page=1");
-				$(".page-link").click(function() {
-					var id = $(this).attr("data-id");
-					var select_id = $(this).parent().attr("id");
-					$.ajax({
-						url: "pagination-rzeka.php",
-						type: "GET",
-						data: {
-							page : id
-						},
-						cache: false,
-						success: function(dataResult) {
-							$("#target-content").html(dataResult);
-							$(".pageitem").removeClass("active");
-							$("#" + select_id).addClass("active");
-						}
-					});
-				});
-			});
-			</script>
-		</div>
-
-		<!-- footer -->
-		<?php
-			include('templates/footer.php');
-		?>
+			<?php include 'templates/footer.php' ?>
+		</article>
 
 	</body>
 </html>

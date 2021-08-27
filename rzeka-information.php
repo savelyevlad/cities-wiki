@@ -44,7 +44,34 @@
 	<head>
 		<title>Miastopedia</title>
 		<meta charset="utf-8">
-		
+		<style>
+			article {
+				min-height: 100%;
+				display: grid;
+				grid-template-rows: auto 1fr auto;
+				grid-template-columns: 100%;
+			}
+
+			footer {
+				background-color: rgb(238, 239, 230);
+    			color: rgb(112, 112, 113);
+				padding: 1rem;
+				text-align: center;
+    			vertical-align: middle;
+			}
+
+			.main-grid-container {
+				display: grid;
+				grid-template-columns: 160px auto;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+
+			.main-link {
+                color: rgb(112, 112, 113); 
+                text-decoration: none;
+            }
+		</style>
 		<!-- My CSS styles file -->
 		<link rel="stylesheet" href="styles/style.css">
 		<!-- Bootstrap CSS (jsDelivr CDN) -->
@@ -56,46 +83,6 @@
 		<!-- my scripts -->	
 		<!-- for some reason this doesn't work: -->
 		<script src="scripts/scripts.js"></script>
-	</head>
-	
-	<body>
-		<div>
-			<!-- header -->
-			<?php
-				include('templates/header.php');
-			?>
-
-			<!-- sidebar -->
-			<?php
-				include('templates/sidebar.php');
-			?>
-
-			<!-- main -->
-			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute; ">
-				<h2> 
-					Wojewódstwo <?php echo $_GET["id"] ?> 
-					<span style="font-size: 12;">
-						[<a href="rzeka-information.php" id="edit">edytuj</a>]
-						 <!-- <a href="index.php" id="delete_page">usuń</a>] -->
-					</span>
-				</h2>
-				<div id="content-to-work-with">
-					<?php
-						$rzeka_name = $_GET["id"];
-						$sql_request = "select * from rzeka where name='$rzeka_name'";
-						$sql_result = mysqli_query($connection, $sql_request);
-						$row = mysqli_fetch_array($sql_result);
-						echo($row["description"]);
-					?>
-				<div>
-			</main>
-		</div>
-
-		<!-- footer -->
-		<?php
-			include('templates/footer.php');
-		?>
-
 		<script>
             // not needed:
 			/*$("#delete_page").click(function(e) {
@@ -123,6 +110,36 @@
 				}, 100);
 			}
 		</script>
+	</head>
+	
+	<body>
+		<article>
+			<?php include 'templates/header.php' ?>
+			<main class="main-grid-container">
+				<!-- sidebar -->
+				<?php include 'templates/sidebar.php'; ?>
+				<!-- main -->
+				<div id="main-content"> 
+					<h2> 
+						Wojewódstwo <?php echo $_GET["id"] ?> 
+						<span style="font-size: 12;">
+							[<a href="rzeka-information.php" id="edit">edytuj</a>]
+							<!-- <a href="index.php" id="delete_page">usuń</a>] -->
+						</span>
+					</h2>
+					<div id="content-to-work-with">
+						<?php
+							$rzeka_name = $_GET["id"];
+							$sql_request = "select * from rzeka where name='$rzeka_name'";
+							$sql_result = mysqli_query($connection, $sql_request);
+							$row = mysqli_fetch_array($sql_result);
+							echo($row["description"]);
+						?>
+					<div>
+				</div>
+			</main>
+			<?php include 'templates/footer.php' ?>
+		</article>
 
 	</body>
 </html>

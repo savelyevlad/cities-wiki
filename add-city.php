@@ -33,9 +33,36 @@
 	<head>
 		<title>Miastopedia</title>
 		<meta charset="utf-8">
-		
-		<!-- My CSS styles file -->
-		<link rel="stylesheet" href="styles/style.css">
+        <style>
+            article {
+                min-height: 100%;
+                display: grid;
+                grid-template-rows: auto 1fr auto;
+                grid-template-columns: 100%;
+            }
+
+            footer {
+                background-color: rgb(238, 239, 230);
+                color: rgb(112, 112, 113);
+                padding: 1rem;
+                text-align: center;
+                vertical-align: middle;
+            }
+
+            .main-grid-container {
+                display: grid;
+                grid-template-columns: 160px auto;
+                margin-top: 10px;
+                margin-right: 10px;
+            }
+
+            .main-link {
+                color: rgb(112, 112, 113); 
+                text-decoration: none;
+            }
+        </style>
+        <!-- this doesn't work: -->
+		<!-- <link rel="stylesheet" href="/styles/style.css"> -->
 		<!-- Bootstrap CSS (jsDelivr CDN) -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<!-- Bootstrap Bundle JS (jsDelivr CDN) -->
@@ -45,40 +72,28 @@
 		<!-- my scripts -->	
 		<!-- for some reason this doesn't work: -->
 		<script src="scripts/scripts.js"></script>
-		<!-- so i made this: -->
-		<script>
-			function onDonateClick() {
-				alert('dziekuję');
-			}
-		</script>
 	</head>
 	
 	<body>
-		<div>
-			<!-- header -->
-			<?php
-				include('templates/header.php');
-			?>
-
-			<!-- sidebar -->
-			<?php
-				include('templates/sidebar.php');
-			?>
-
-			<!-- main -->
-			<main style="width: 85%; margin-left: 15%; margin-top:2%; position: absolute; "> 
-				<form action="add-city.php" method="post">
+        <article>
+			<?php include 'templates/header.php' ?>
+			<main class="main-grid-container">
+				<!-- sidebar -->
+				<?php include 'templates/sidebar.php'; ?>
+				<!-- main -->
+				<div id="main-content"> 
+                <form action="add-city.php" method="post">
                     <div class="form-group">
                         <label for="nameInput"><a title="Pole wymagane">Nazwa*</a>:</label>
-                        <input class="form-control" name="nameInput" placeholder="Podaj nazwę" style="width: 30%;" required>
+                        <input class="form-control" name="nameInput" placeholder="Podaj nazwę" style="width: 80%;" required>
                     </div>
                     <div class="form-group" style="margin-top: 10px;">
                         <label for="descriptionInput">Opis:</label>
-                        <textarea class="form-control" name="descriptionInput" placeholder="Podaj opis" style="width: 50%; height: 200px;"></textarea>
+                        <textarea class="form-control" name="descriptionInput" placeholder="Podaj opis" style="width: 80%; height: 200px;"></textarea>
                     </div>
                     <div class="form-group" style="margin-top: 10px;">
                         <label for="selectedWojewodstwo"><a title="Pole wymagane">Wojewodztwo*</a>:</label>
-                        <select class="form-select" style="width: 50%;" name="selectedWojewodstwo" required>
+                        <select class="form-select" style="width: 80%;" name="selectedWojewodstwo" required>
                             <option value="">---</option>
                             <?php
                                 $sql_request = "select name,id_wojewodstwo from wojewodstwo order by name;";
@@ -91,7 +106,7 @@
                     </div>
                     <div class="form-group" style="margin-top: 10px;">
                         <label for="selectedRzeka">Rzeka:</label>
-                        <select class="form-select" style="width: 50%;" name="selectedRzeka">
+                        <select class="form-select" style="width: 80%;" name="selectedRzeka">
                             <option value="">---</option>
                             <?php
                                 $sql_request = "select name,id_rzeka from rzeka order by name;";
@@ -104,13 +119,10 @@
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 10px;">Dodać</button>
                 </form>
+				</div>
 			</main>
-		</div>
-
-		<!-- footer -->
-		<?php
-			include('templates/footer.php');
-		?>
+			<?php include 'templates/footer.php' ?>
+		</article>
 
 	</body>
 </html>

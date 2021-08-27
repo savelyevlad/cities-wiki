@@ -1,4 +1,4 @@
-<footer class="footer">
-	<div style="height: 40%;"></div>
+<footer>
+	<div style="height: 20%;"></div>
 	<p><b>© Miastopedia</b></p>
 </footer>
