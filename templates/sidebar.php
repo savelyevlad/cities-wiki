@@ -5,7 +5,7 @@
 						Funkcjonalność
 					</button>
 					<div class="collapse" id="home-collapse">
-						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="list-style-type: ' - '; margin-left: 10px;">
 							<li><a href="./" class="link-dark rounded">Strona główna</a></li>
 							<li><a href="./add-city.php" class="link-dark rounded">Dodaj miasto (+)</a></li>
 							<li><a href="./lista-wojewodstw.php" class="link-dark rounded">Zobać listę województw</a></li>
@@ -19,7 +19,7 @@
 						Kontakt
 					</button>
 					<div class="collapse" id="dashboard-collapse">
-						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small" style="list-style-type: ' - '; margin-left: 10px;">
 							<li><a href="https://github.com/savelyevlad" class="link-dark rounded">Github</a></li>
 							<li><a href="https://www.facebook.com/idsavelyev/" class="link-dark rounded">Facebook</a></li>
 						</ul>
